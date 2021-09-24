@@ -1,0 +1,17 @@
+RequestCpus  = _THREADS_
+RequestMemory = 8192
+
+CONDOR_ID = $(Cluster).$(Process)
+Universe   = vanilla
+Executable = ../sonic.sh
+
+Log       = PR13_$(CONDOR_ID).log
+Output    = PR13_$(CONDOR_ID).out
+Error     = PR13_$(CONDOR_ID).err
+
+should_transfer_files = IF_NEEDED
+when_to_transfer_output = ON_EXIT
+
+periodic_remove = (JobStatus == 2) && (time() - EnteredCurrentStatus) > (2500)
+Arguments  = $(CONDOR_ID) $(RequestCpus)
+Queue NNN
