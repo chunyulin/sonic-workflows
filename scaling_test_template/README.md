@@ -1,10 +1,10 @@
-# Quickstart
+# Note
 
 Here are the template used for SONIC scaling test on T2_TW_NCHC.
 
 Several things has done on the site to facilitate the testing by local submission:
-- Data files has been copied to the site; so no CMS grid certificate is needed for .
-- We tarball the PR10/PR13 workflow in each WNs. No need to run `setup.py` to setup sonic workflow from scratch each time. See `./tpl/sonic.sh` for detail.
+- Data files has been copied to the site, as modified in `step*.py`. So, no CMS grid certificate is needed.
+- We tarball the workflow in each WNs. Therefore, no need to run `setup.py` to setup sonic workflow from scratch each time. See `./tpl/sonic.sh` for detail.
 - I modified `run.py` to accommodate multiple Triton servers and FastTimerService for reading out the throughput information.
 - Some plot scripts has to be modified to accommodate `REPEATS>1` in the `prepare.sh`.
 
