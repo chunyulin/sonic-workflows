@@ -10,4 +10,6 @@ We also tarball the PR10/PR13 workflow to the site, see `./tpl/sonic.sh` for det
 7) Go back to this folder, run `./pltAggScale.py` to produce the scaling plot for different set of runs as in step-(1).
 8) There are other scripts used to generate plots for Runtime, Time breakdown, and detail verbose information, etc.
 
+Note that I modified `run.py` to accommodate multiple Triton server and FastTimerService for reading out the throughput information.
+
 --
