@@ -11,7 +11,7 @@ N=${#CLIENTS[@]}
 
 write_dag_job() {
     echo "JOB $1 $2.condor DIR $2" >> $DAG
-    echo "SCRIPT POST $1 echo" >> $DAG
+    echo "SCRIPT POST $1 /usr/bin/echo" >> $DAG
 }
 write_dag_depend() {
     echo "PARENT $1 CHILD $2" >> $DAG
