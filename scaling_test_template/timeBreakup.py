@@ -15,7 +15,12 @@ type["other"] = ["other"]
 import os
 def parse(fjson):
 
-    cwd    = fjson.split('/')[-2]
+    cwd = ""
+    try:
+        cwd    = fjson.split('/')[-2]
+    except:
+        cwd    = fjson.split('/')[-1]
+
     data = json.load(open(fjson))
     nev = data["total"]["events"]
 
@@ -38,16 +43,19 @@ def parse(fjson):
     #for n in net:
     #        print("{:5s} {:6.1f}  {:4.1f} %".format( n, rtime[n]/nev, rtime[n]/trtime*100) )
     #print("Sum   {:6.1f}  {:4.1f} %".format( sum(rtime.values())/nev, sum(rtime.values())/trtime*100) )
-    
-    print("%s %f %f (%.2f%%) %f (%.2f%%) %f (%.2f%%) %f (%.2f%%)   %f " % (cwd, trtime/nev, 
+
+    print("%s %.1f  %4.1f (%3.1f%%) %4.2f (%3.1f%%) %4.1f (%3.1f%%) %4.1f (%4.1f%%)   %.1f  %4.1f (%3.1f%%) %4.1f (%3.1f%%) %4.1f (%3.1f%%) %4.1f (%4.1f%%)" % (cwd, trtime/nev,
                                                                        rtime['pnet']/nev, rtime['pnet']/trtime*100,
                                                                        rtime['dtau']/nev, rtime['dtau']/trtime*100,
                                                                        rtime['dmet']/nev, rtime['dmet']/trtime*100,
                                                                        rtime['other']/nev, rtime['other']/trtime*100,
-                                                                       tctime/nev )
+                                                                       tctime/nev,
+                                                                       ctime['pnet']/nev, ctime['pnet']/tctime*100,
+                                                                       ctime['dtau']/nev, ctime['dtau']/tctime*100,
+                                                                       ctime['dmet']/nev, ctime['dmet']/tctime*100,
+                                                                       ctime['other']/nev, ctime['other']/tctime*100 )
                                                                         )
     #print("%s %f %f %f %f" % (cwd, tctime/nev, ctime['pnet']/nev, ctime['dtau']/nev, ctime['dmet']/nev) )
 
 for f in sys.argv[1:]:
     parse(f)
-
